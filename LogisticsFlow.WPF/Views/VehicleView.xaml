@@ -1,0 +1,193 @@
+﻿<Window x:Class="LogisticsFlow.WPF.Views.VehicleView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LogisticsFlow.WPF.Views"
+        xmlns:converters="clr-namespace:LogisticsFlow.WPF.Common.Converters"
+        mc:Ignorable="d"
+        Title="Транспорт" Height="850" Width="1300" WindowState="Maximized">
+
+    <Window.Resources>
+        <converters:MessageStateToBrushConverter x:Key="MessageStateToBrushConverter"/>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Button
+            Command="{Binding MenuViewCommand}"
+            Content="Меню"
+            Grid.Column="1"
+            Grid.Row="0"
+            HorizontalAlignment="Right"
+            Margin="5"/>
+
+        <StackPanel
+            Margin="5"
+            Grid.Row="1"
+            Grid.Column="0">
+
+            <TextBlock
+                Text="Марка:"/>
+            <TextBox 
+                Text="{Binding VehicleAdd.Mark}"
+                Margin="5"/>
+
+            <TextBlock 
+                Text="Модель:"/>
+            <TextBox 
+                Text="{Binding VehicleAdd.Model}" 
+                Margin="5"/>
+
+            <TextBlock 
+                Text="Номер:"/>
+            <TextBox 
+                Text="{Binding VehicleAdd.Number}" 
+                Margin="5"/>
+
+            <TextBlock 
+                Text="Грузоподъёмность:"/>
+            <TextBox 
+                Text="{Binding VehicleAdd.LoadCapacity}" 
+                Margin="5"/>
+
+            <Button 
+                Content="Создать"
+                Command="{Binding CreateCommand}"
+                Width="150"
+                Margin="10"/>
+        </StackPanel>
+
+        <StackPanel
+            Grid.Row="1"
+            Grid.Column="1"
+            Margin="5">
+
+            <TextBlock
+                Text="Id:"/>
+            <TextBox 
+                Text="{Binding VehicleWorker.Id}"
+                IsReadOnly="True"
+                Margin="5"/>
+
+            <TextBlock
+                Text="Марка:"/>
+            <TextBox 
+                Text="{Binding VehicleWorker.Mark}"
+                Margin="5"/>
+
+            <TextBlock 
+                Text="Модель:"/>
+            <TextBox 
+                Text="{Binding VehicleWorker.Model}" 
+                Margin="5"/>
+
+            <TextBlock 
+                Text="Номер:"/>
+            <TextBox 
+                Text="{Binding VehicleWorker.Number}" 
+                Margin="5"/>
+
+            <TextBlock 
+                Text="Грузоподъёмность:"/>
+            <TextBox 
+                Text="{Binding VehicleWorker.LoadCapacity}" 
+                Margin="5"/>
+
+            <StackPanel
+                Orientation="Horizontal"
+                HorizontalAlignment="Center">
+                
+                <Button
+                    Command="{Binding UpdateCommand}" 
+                    Content="Обновить"
+                    Width="150"
+                    Margin="10"/>
+                <Button
+                    Command="{Binding DeleteCommand}"
+                    Content="Удалить"
+                    Width="150"
+                    Margin="10"/>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel
+            Grid.Row="2"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Background="AliceBlue">
+
+            <Button 
+                 Command="{Binding GetAllCommand}"
+                Content="Показать все записи"
+                Width="150"
+                Margin="10"/>
+
+            <ListBox
+                ItemsSource="{Binding VehicleList}"
+                SelectedItem="{Binding VehicleWorker}"
+                Background="LightGray"
+                Margin="10"
+                Height="450">
+
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock
+                                Text="Марка:"/>
+                            <TextBlock 
+                                Text="{Binding Mark}"
+                                FontWeight="Bold"
+                                Margin="5 0 0 0"
+                                Width="120"/>
+
+                            <TextBlock
+                                Text="Модель:"
+                                Margin="5 0 0 0"/>
+                            <TextBlock 
+                                Text="{Binding Model}" 
+                                Width="120"
+                                FontWeight="Bold"
+                                Margin="5 0 0 0"/>
+
+                            <TextBlock 
+                                Text="Номер:"
+                                Margin="5 0 0 0"/>
+                            <TextBlock 
+                                Text="{Binding Number}"
+                                Width="120"
+                                FontWeight="Bold"
+                                Margin="5 0 0 0"/>
+
+                            <TextBlock 
+                                Text="Грузоподъёмность:"
+                                Margin="5 0 0 0"/>
+                            <TextBlock 
+                                Text="{Binding LoadCapacity}"
+                                Width="120"
+                                FontWeight="Bold"
+                                Margin="5 0 0 0"/>
+
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+            <TextBlock 
+                Text="{Binding Message.Message}"
+                Foreground="{Binding Message.State,
+                     Converter={StaticResource MessageStateToBrushConverter}}"
+                FontWeight="Bold"
+                Margin="5"/>
+        </StackPanel>
+    </Grid>
+</Window>

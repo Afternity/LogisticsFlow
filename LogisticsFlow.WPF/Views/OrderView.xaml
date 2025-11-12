@@ -1,0 +1,331 @@
+﻿<Window x:Class="LogisticsFlow.WPF.Views.OrderView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LogisticsFlow.WPF.Views"
+        xmlns:converters="clr-namespace:LogisticsFlow.WPF.Common.Converters"
+        mc:Ignorable="d"
+        Title="Заказы" Height="850" Width="1300" WindowState="Maximized">
+
+    <Window.Resources>
+        <converters:MessageStateToBrushConverter x:Key="MessageStateToBrushConverter"/>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="1.8*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Button
+            Command="{Binding MenuViewCommand}"
+            Content="Меню"
+            Grid.Column="1"
+            Grid.Row="0"
+            HorizontalAlignment="Right"
+            Margin="5"/>
+
+        <StackPanel
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Orientation="Horizontal"
+            VerticalAlignment="Center">
+
+            <TextBlock
+                Text="Имя водителя:"
+                Margin="5"/>
+            <TextBox 
+                Text="{Binding DriverNameSearch}"
+                Width="200"
+                Margin="5"/>
+
+            <TextBlock
+                Text="Номер тел. клиента:"
+                Margin="5"/>
+            <TextBox 
+                Text="{Binding ClientPhoneNumber}"
+                Width="200"
+                Margin="5"/>
+
+            <TextBlock
+                Text="Статус заказа:"
+                Margin="5"/>
+            <TextBox 
+                Text="{Binding OrderStatus}"
+                Width="200"
+                Margin="5"/>
+
+            <TextBlock
+                Text="Название товара:"
+                Margin="5"/>
+            <TextBox 
+                Text="{Binding ClientPhoneNumber}"
+                Width="200"
+                Margin="5"/>
+
+        </StackPanel>
+
+        <StackPanel
+            Margin="5"
+            Grid.Row="1"
+            Grid.Column="0">
+
+            <TextBlock Text="Дата заказа:"/>
+            <DatePicker 
+                SelectedDate="{Binding OrderAdd.OrderDate}"
+                Margin="5"/>
+
+            <TextBlock Text="Желаемая дата доставки:"/>
+            <DatePicker 
+                SelectedDate="{Binding OrderAdd.DesiredDeliveryDate}"
+                Margin="5"/>
+
+            <TextBlock Text="Статус:"/>
+            <TextBox 
+                Text="{Binding OrderAdd.Status}"
+                Margin="5"/>
+
+            <TextBlock Text="Цена:"/>
+            <TextBox 
+                Text="{Binding OrderAdd.Price}"
+                Margin="5"/>
+
+            <TextBlock Text="Груз:"/>
+            <ComboBox 
+                ItemsSource="{Binding CargoList}"
+                SelectedValuePath="Id"
+                SelectedValue="{Binding OrderAdd.CargoId}"
+                DisplayMemberPath="Name"
+                Margin="5"/>
+
+            <TextBlock Text="Сотрудник:"/>
+            <ComboBox 
+                ItemsSource="{Binding EmployeeList}"
+                SelectedValuePath="Id"
+                SelectedValue="{Binding OrderAdd.EmployeeId}"
+                DisplayMemberPath="Name"
+                Margin="5"/>
+
+            <TextBlock Text="Клиент:"/>
+            <ComboBox 
+                ItemsSource="{Binding ClientList}"
+                SelectedValuePath="Id"
+                SelectedValue="{Binding OrderAdd.ClientId}"
+                DisplayMemberPath="Name"
+                Margin="5"/>
+
+            <TextBlock Text="Водитель:"/>
+            <ComboBox 
+                ItemsSource="{Binding DriverList}"
+                SelectedValuePath="Id"
+                SelectedValue="{Binding OrderAdd.DriverId}"
+                DisplayMemberPath="Name"
+                Margin="5"/>
+
+            <TextBlock Text="Маршрут:"/>
+            <ComboBox 
+                ItemsSource="{Binding RouteList}"
+                SelectedValuePath="Id"
+                SelectedValue="{Binding OrderAdd.RouteId}"
+                Margin="5">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock>
+                            <Run Text="{Binding Origin}"/>
+                            <Run Text=" → "/>
+                            <Run Text="{Binding Destination}"/>
+                        </TextBlock>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            <Button 
+                Content="Создать"
+                Command="{Binding CreateCommand}"
+                Width="150"
+                Margin="10"/>
+        </StackPanel>
+
+        <StackPanel
+            Grid.Row="1"
+            Grid.Column="1"
+            Margin="5">
+
+            <TextBlock Text="Id:"/>
+            <TextBox 
+                Text="{Binding OrderWorker.Id}"
+                IsReadOnly="True"
+                Margin="5"/>
+
+            <TextBlock Text="Дата заказа:"/>
+            <DatePicker 
+                SelectedDate="{Binding OrderWorker.OrderDate}"
+                Margin="5"/>
+
+            <TextBlock Text="Желаемая дата доставки:"/>
+            <DatePicker 
+                SelectedDate="{Binding OrderWorker.DesiredDeliveryDate}"
+                Margin="5"/>
+
+            <TextBlock Text="Статус:"/>
+            <TextBox 
+                Text="{Binding OrderWorker.Status}"
+                Margin="5"/>
+
+            <TextBlock Text="Цена:"/>
+            <TextBox 
+                Text="{Binding OrderWorker.Price}"
+                Margin="5"/>
+
+            <TextBlock Text="Груз:"/>
+            <ComboBox 
+                ItemsSource="{Binding CargoList}"
+                SelectedValuePath="Id"
+                SelectedValue="{Binding OrderWorker.CargoId}"
+                DisplayMemberPath="Name"
+                Margin="5"/>
+
+            <TextBlock Text="Сотрудник:"/>
+            <ComboBox 
+                ItemsSource="{Binding EmployeeList}"
+                SelectedValuePath="Id"
+                SelectedValue="{Binding OrderWorker.EmployeeId}"
+                DisplayMemberPath="Name"
+                Margin="5"/>
+
+            <TextBlock Text="Клиент:"/>
+            <ComboBox 
+                ItemsSource="{Binding ClientList}"
+                SelectedValuePath="Id"
+                SelectedValue="{Binding OrderWorker.ClientId}"
+                DisplayMemberPath="Name"
+                Margin="5"/>
+
+            <TextBlock Text="Водитель:"/>
+            <ComboBox 
+                ItemsSource="{Binding DriverList}"
+                SelectedValuePath="Id"
+                SelectedValue="{Binding OrderWorker.DriverId}"
+                DisplayMemberPath="Name"
+                Margin="5"/>
+
+            <TextBlock Text="Маршрут:"/>
+            <ComboBox 
+                ItemsSource="{Binding RouteList}"
+                SelectedValuePath="Id"
+                SelectedValue="{Binding OrderWorker.RouteId}"
+                DisplayMemberPath="OriginDestination"
+                Margin="5"/>
+
+            <StackPanel
+                Orientation="Horizontal"
+                HorizontalAlignment="Center">
+
+                <Button
+                    Command="{Binding UpdateCommand}" 
+                    Content="Обновить"
+                    Width="150"
+                    Margin="10"/>
+                <Button
+                    Command="{Binding DeleteCommand}"
+                    Content="Удалить"
+                    Width="150"
+                    Margin="10"/>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel
+            Grid.Row="2"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Background="AliceBlue">
+
+            <StackPanel
+                Orientation="Horizontal"
+                HorizontalAlignment="Center">
+
+                <Button
+                    Command="{Binding SearchCommand}"
+                    Content="Поиск по фильтерам"
+                    Width="150"
+                    Margin="10"/>
+                <Button 
+                    Command="{Binding GetAllCommand}"
+                    Content="Показать все записи"
+                    Width="150"
+                    Margin="10"/>
+            </StackPanel>
+
+            <ListBox
+                ItemsSource="{Binding OrderList}"
+                SelectedItem="{Binding OrderWorker}"
+                Background="LightGray"
+                Margin="10"
+                Height="200">
+
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Дата:"/>
+                            <TextBlock 
+                                Text="{Binding OrderDate, StringFormat=dd.MM.yyyy}"
+                                FontWeight="Bold"
+                                Margin="5 0 0 0"
+                                Width="100"/>
+
+                            <TextBlock Text="Доставка:" Margin="5 0 0 0"/>
+                            <TextBlock 
+                                Text="{Binding DesiredDeliveryDate, StringFormat=dd.MM.yyyy}" 
+                                Width="100"
+                                FontWeight="Bold"
+                                Margin="5 0 0 0"/>
+
+                            <TextBlock Text="Статус:" Margin="5 0 0 0"/>
+                            <TextBlock 
+                                Text="{Binding Status}"
+                                Width="100"
+                                FontWeight="Bold"
+                                Margin="5 0 0 0"/>
+
+                            <TextBlock Text="Цена:" Margin="5 0 0 0"/>
+                            <TextBlock 
+                                Text="{Binding Price}"
+                                Width="80"
+                                FontWeight="Bold"
+                                Margin="5 0 0 0"/>
+
+                            <TextBlock Text="Груз:" Margin="5 0 0 0"/>
+                            <TextBlock 
+                                Text="{Binding Cargo.Name}"
+                                Width="100"
+                                FontWeight="Bold"
+                                Margin="5 0 0 0"/>
+
+                            <TextBlock Text="Клиент:" Margin="5 0 0 0"/>
+                            <TextBlock 
+                                Text="{Binding Client.Name}"
+                                Width="100"
+                                FontWeight="Bold"
+                                Margin="5 0 0 0"/>
+
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+            <TextBlock 
+                Text="{Binding Message.Message}"
+                Foreground="{Binding Message.State,
+                     Converter={StaticResource MessageStateToBrushConverter}}"
+                FontWeight="Bold"
+                Margin="5"/>
+        </StackPanel>
+    </Grid>
+</Window>
