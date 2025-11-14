@@ -90,7 +90,7 @@ namespace LogisticsFlow.ContractWPF.ViewModels
                         && (string.IsNullOrWhiteSpace(OrderStatus)
                          || order.Status.Contains(OrderStatus))
                         && (string.IsNullOrWhiteSpace(CargoName)
-                         || order.Price.ToString().Contains(CargoName))
+                         || order.Cargo.Name.Contains(CargoName))
                     )
                     .ToListAsync(tokenSource.Token);
 

@@ -66,7 +66,7 @@
                 Text="Название товара:"
                 Margin="5"/>
             <TextBox 
-                Text="{Binding ClientPhoneNumber}"
+                Text="{Binding CargoName}"
                 Width="200"
                 Margin="5"/>
 
