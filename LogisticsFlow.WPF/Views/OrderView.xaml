@@ -306,6 +306,7 @@
                                 Text="{Binding Cargo.Name}"
                                 Width="100"
                                 FontWeight="Bold"
+                                TextWrapping="Wrap"
                                 Margin="5 0 0 0"/>
 
                             <TextBlock Text="Клиент:" Margin="5 0 0 0"/>
