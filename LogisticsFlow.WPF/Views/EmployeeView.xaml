@@ -6,24 +6,25 @@
         xmlns:local="clr-namespace:LogisticsFlow.WPF.Views"
         xmlns:converters="clr-namespace:LogisticsFlow.WPF.Common.Converters"
         mc:Ignorable="d"
-        Title="Работники" Height="850" Width="1300" WindowState="Maximized">
+        Title="Работники" Height="700" Width="1200">
 
     <Window.Resources>
         <converters:MessageStateToBrushConverter x:Key="MessageStateToBrushConverter"/>
     </Window.Resources>
 
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="0.5*"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="0.5*"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
 
-        <Button
+            <Button
             Command="{Binding MenuViewCommand}"
             Content="Меню"
             Grid.Column="1"
@@ -31,163 +32,165 @@
             HorizontalAlignment="Right"
             Margin="5"/>
 
-        <StackPanel
+            <StackPanel
             Margin="5"
             Grid.Row="1"
             Grid.Column="0">
 
-            <TextBlock
+                <TextBlock
                 Text="Имя:"/>
-            <TextBox 
+                <TextBox 
                 Text="{Binding EmployeeAdd.Name}"
                 Margin="5"/>
 
-            <TextBlock 
+                <TextBlock 
                 Text="Пароль:"/>
-            <TextBox
+                <TextBox
                 Text="{Binding EmployeeAdd.Password}"
                 Margin="5"/>
 
-            <TextBlock 
+                <TextBlock 
                 Text="Email:"/>
-            <TextBox 
+                <TextBox 
                 Text="{Binding EmployeeAdd.Email}" 
                 Margin="5"/>
 
-            <TextBlock 
+                <TextBlock 
                 Text="Телефон:"/>
-            <TextBox 
+                <TextBox 
                 Text="{Binding EmployeeAdd.PhoneNumber}" 
                 Margin="5"/>
 
-            <Button 
+                <Button 
                 Content="Создать"
                 Command="{Binding CreateCommand}"
                 Width="150"
                 Margin="10"/>
-        </StackPanel>
+            </StackPanel>
 
-        <StackPanel
+            <StackPanel
             Grid.Row="1"
             Grid.Column="1"
             Margin="5">
 
-            <TextBlock
+                <TextBlock
                 Text="Id:"/>
-            <TextBox 
+                <TextBox 
                 Text="{Binding EmployeeWorker.Id}"
                 IsReadOnly="True"
                 Margin="5"/>
 
-            <TextBlock
+                <TextBlock
                 Text="Имя:"/>
-            <TextBox 
+                <TextBox 
                 Text="{Binding EmployeeWorker.Name}"
                 Margin="5"/>
 
-            <TextBlock 
+                <TextBlock 
                 Text="Пароль:"/>
-            <TextBox
+                <TextBox
                 Text="{Binding EmployeeWorker.Password}"
                 Margin="5"/>
 
-            <TextBlock 
+                <TextBlock 
                 Text="Email:"/>
-            <TextBox 
+                <TextBox 
                 Text="{Binding EmployeeWorker.Email}" 
                 Margin="5"/>
 
-            <TextBlock 
+                <TextBlock 
                 Text="Телефон:"/>
-            <TextBox 
+                <TextBox 
                 Text="{Binding EmployeeWorker.PhoneNumber}" 
                 Margin="5"/>
 
-            <StackPanel
+                <StackPanel
                 Orientation="Horizontal"
                 HorizontalAlignment="Center">
-                
-                <Button
+
+                    <Button
                     Command="{Binding UpdateCommand}" 
                     Content="Обновить"
                     Width="150"
                     Margin="10"/>
-                <Button
+                    <Button
                     Command="{Binding DeleteCommand}"
                     Content="Удалить"
                     Width="150"
                     Margin="10"/>
+                </StackPanel>
             </StackPanel>
-        </StackPanel>
 
-        <StackPanel
+            <StackPanel
             Grid.Row="2"
             Grid.Column="0"
             Grid.ColumnSpan="2"
             Background="AliceBlue">
 
-            <Button 
+                <Button 
                  Command="{Binding GetAllCommand}"
                 Content="Показать все записи"
                 Width="150"
                 Margin="10"/>
 
-            <ListBox
+                <ListBox
                 ItemsSource="{Binding EmployeeList}"
                 SelectedItem="{Binding EmployeeWorker}"
                 Background="LightGray"
                 Margin="10"
                 Height="450">
 
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock
                                 Text="Имя:"/>
-                            <TextBlock 
+                                <TextBlock 
                                 Text="{Binding Name}"
                                 FontWeight="Bold"
                                 Margin="5 0 0 0"
                                 Width="150"/>
 
-                            <TextBlock
+                                <TextBlock
                                 Text="Email:"
                                 Margin="5 0 0 0"/>
-                            <TextBlock 
+                                <TextBlock 
                                 Text="{Binding Email}" 
                                 Width="150"
                                 FontWeight="Bold"
                                 Margin="5 0 0 0"/>
 
-                            <TextBlock
+                                <TextBlock
                                 Text="Пароль:"
                                 Margin="5 0 0 0"/>
-                            <TextBlock 
+                                <TextBlock 
                                 Text="{Binding Password}" 
                                 Width="150"
                                 FontWeight="Bold"
                                 Margin="5 0 0 0"/>
 
-                            <TextBlock 
+                                <TextBlock 
                                 Text="Телефон:"
                                 Margin="5 0 0 0"/>
-                            <TextBlock 
+                                <TextBlock 
                                 Text="{Binding PhoneNumber}"
                                 Width="120"
                                 FontWeight="Bold"
                                 Margin="5 0 0 0"/>
 
-                        </StackPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
 
-            <TextBlock 
+                <TextBlock 
                 Text="{Binding Message.Message}"
                 Foreground="{Binding Message.State,
                      Converter={StaticResource MessageStateToBrushConverter}}"
                 FontWeight="Bold"
                 Margin="5"/>
-        </StackPanel>
-    </Grid>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+
 </Window>

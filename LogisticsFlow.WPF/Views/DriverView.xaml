@@ -6,24 +6,25 @@
         xmlns:local="clr-namespace:LogisticsFlow.WPF.Views"
         xmlns:converters="clr-namespace:LogisticsFlow.WPF.Common.Converters"
         mc:Ignorable="d"
-        Title="Водители" Height="850" Width="1300" WindowState="Maximized">
+        Title="Водители" Height="700" Width="1200" WindowState="Maximized">
 
     <Window.Resources>
         <converters:MessageStateToBrushConverter x:Key="MessageStateToBrushConverter"/>
     </Window.Resources>
 
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="0.5*"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="0.5*"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
 
-        <Button
+            <Button
             Command="{Binding MenuViewCommand}"
             Content="Меню"
             Grid.Column="1"
@@ -31,169 +32,170 @@
             HorizontalAlignment="Right"
             Margin="5"/>
 
-        <StackPanel
+            <StackPanel
             Margin="5"
             Grid.Row="1"
             Grid.Column="0">
 
-            <TextBlock
+                <TextBlock
                 Text="Имя:"/>
-            <TextBox 
+                <TextBox 
                 Text="{Binding DriverAdd.Name}"
                 Margin="5"/>
 
-            <TextBlock 
+                <TextBlock 
                 Text="Телефон:"/>
-            <TextBox 
+                <TextBox 
                 Text="{Binding DriverAdd.Phone}" 
                 Margin="5"/>
 
-            <TextBlock 
+                <TextBlock 
                 Text="Номер лицензии:"/>
-            <TextBox 
+                <TextBox 
                 Text="{Binding DriverAdd.LicenseNumber}" 
                 Margin="5"/>
 
-            <TextBlock 
+                <TextBlock 
                 Text="Транспорт:"/>
-            <ComboBox 
+                <ComboBox 
                 ItemsSource="{Binding VehicleList}"
                 SelectedValuePath="Id"
                 SelectedValue="{Binding DriverAdd.VehicleID}"
                 DisplayMemberPath="Number"
                 Margin="5"/>
 
-            <Button 
+                <Button 
                 Content="Создать"
                 Command="{Binding CreateCommand}"
                 Width="150"
                 Margin="10"/>
-        </StackPanel>
+            </StackPanel>
 
-        <StackPanel
+            <StackPanel
             Grid.Row="1"
             Grid.Column="1"
             Margin="5">
 
-            <TextBlock
+                <TextBlock
                 Text="Id:"/>
-            <TextBox 
+                <TextBox 
                 Text="{Binding DriverWorker.Id}"
                 IsReadOnly="True"
                 Margin="5"/>
 
-            <TextBlock
+                <TextBlock
                 Text="Имя:"/>
-            <TextBox 
+                <TextBox 
                 Text="{Binding DriverWorker.Name}"
                 Margin="5"/>
 
-            <TextBlock 
+                <TextBlock 
                 Text="Телефон:"/>
-            <TextBox 
+                <TextBox 
                 Text="{Binding DriverWorker.Phone}" 
                 Margin="5"/>
 
-            <TextBlock 
+                <TextBlock 
                 Text="Номер лицензии:"/>
-            <TextBox 
+                <TextBox 
                 Text="{Binding DriverWorker.LicenseNumber}" 
                 Margin="5"/>
 
-            <TextBlock 
+                <TextBlock 
                 Text="Транспорт:"/>
-            <ComboBox 
+                <ComboBox 
                 ItemsSource="{Binding VehicleList}"
                 SelectedValuePath="Id"
                 SelectedValue="{Binding DriverWorker.VehicleID}"
                 DisplayMemberPath="Number"
                 Margin="5"/>
 
-            <StackPanel
+                <StackPanel
                 Orientation="Horizontal"
                 HorizontalAlignment="Center">
-                
-                <Button
+
+                    <Button
                     Command="{Binding UpdateCommand}" 
                     Content="Обновить"
                     Width="150"
                     Margin="10"/>
-                <Button
+                    <Button
                     Command="{Binding DeleteCommand}"
                     Content="Удалить"
                     Width="150"
                     Margin="10"/>
+                </StackPanel>
             </StackPanel>
-        </StackPanel>
 
-        <StackPanel
+            <StackPanel
             Grid.Row="2"
             Grid.Column="0"
             Grid.ColumnSpan="2"
             Background="AliceBlue">
 
-            <Button 
+                <Button 
                  Command="{Binding GetAllCommand}"
                 Content="Показать все записи"
                 Width="150"
                 Margin="10"/>
 
-            <ListBox
+                <ListBox
                 ItemsSource="{Binding DriverList}"
                 SelectedItem="{Binding DriverWorker}"
                 Background="LightGray"
                 Margin="10"
                 Height="450">
 
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock
                                 Text="Имя:"/>
-                            <TextBlock 
+                                <TextBlock 
                                 Text="{Binding Name}"
                                 FontWeight="Bold"
                                 Margin="5 0 0 0"
                                 Width="150"/>
 
-                            <TextBlock
+                                <TextBlock
                                 Text="Телефон:"
                                 Margin="5 0 0 0"/>
-                            <TextBlock 
+                                <TextBlock 
                                 Text="{Binding Phone}" 
                                 Width="120"
                                 FontWeight="Bold"
                                 Margin="5 0 0 0"/>
 
-                            <TextBlock 
+                                <TextBlock 
                                 Text="Лицензия:"
                                 Margin="5 0 0 0"/>
-                            <TextBlock 
+                                <TextBlock 
                                 Text="{Binding LicenseNumber}"
                                 Width="120"
                                 FontWeight="Bold"
                                 Margin="5 0 0 0"/>
 
-                            <TextBlock 
+                                <TextBlock 
                                 Text="Транспорт:"
                                 Margin="5 0 0 0"/>
-                            <TextBlock 
+                                <TextBlock 
                                 Text="{Binding Vehicle.Mark}"
                                 Width="100"
                                 FontWeight="Bold"
                                 Margin="5 0 0 0"/>
 
-                        </StackPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
 
-            <TextBlock 
+                <TextBlock 
                 Text="{Binding Message.Message}"
                 Foreground="{Binding Message.State,
                      Converter={StaticResource MessageStateToBrushConverter}}"
                 FontWeight="Bold"
                 Margin="5"/>
-        </StackPanel>
-    </Grid>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
 </Window>
