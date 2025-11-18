@@ -25,7 +25,7 @@ namespace LogisticsFlow.WPF
             _serviceProvider = services.BuildServiceProvider();
 
             _windowManager = new ViewManager(_serviceProvider);
-            _windowManager.EmployeeView();
+            _windowManager.AuthView();
 
             base.OnStartup(e);
         }

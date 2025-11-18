@@ -44,7 +44,7 @@ namespace LogisticsFlow.Persistence.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Cargos");
+                    b.ToTable("Cargos", (string)null);
                 });
 
             modelBuilder.Entity("LogisticsFlow.Domain.Models.Client", b =>
@@ -71,7 +71,7 @@ namespace LogisticsFlow.Persistence.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Clients");
+                    b.ToTable("Clients", (string)null);
                 });
 
             modelBuilder.Entity("LogisticsFlow.Domain.Models.Driver", b =>
@@ -99,7 +99,7 @@ namespace LogisticsFlow.Persistence.Data.Migrations
 
                     b.HasIndex("VehicleID");
 
-                    b.ToTable("Drivers");
+                    b.ToTable("Drivers", (string)null);
                 });
 
             modelBuilder.Entity("LogisticsFlow.Domain.Models.Employee", b =>
@@ -126,7 +126,7 @@ namespace LogisticsFlow.Persistence.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Employees");
+                    b.ToTable("Employees", (string)null);
                 });
 
             modelBuilder.Entity("LogisticsFlow.Domain.Models.Order", b =>
@@ -175,7 +175,7 @@ namespace LogisticsFlow.Persistence.Data.Migrations
 
                     b.HasIndex("RouteId");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Orders", (string)null);
                 });
 
             modelBuilder.Entity("LogisticsFlow.Domain.Models.Route", b =>
@@ -200,7 +200,7 @@ namespace LogisticsFlow.Persistence.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Routes");
+                    b.ToTable("Routes", (string)null);
                 });
 
             modelBuilder.Entity("LogisticsFlow.Domain.Models.Vehicle", b =>
@@ -226,7 +226,7 @@ namespace LogisticsFlow.Persistence.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Vehicles");
+                    b.ToTable("Vehicles", (string)null);
                 });
 
             modelBuilder.Entity("LogisticsFlow.Domain.Models.Driver", b =>
